@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace CustomerDataService.Repository
+namespace Application.Contracts
 {
     public interface ICustomerRepository
     {

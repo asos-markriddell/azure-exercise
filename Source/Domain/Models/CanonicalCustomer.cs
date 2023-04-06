@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Domain.Models
 {
     public class CanonicalCustomer
     {
@@ -15,6 +8,5 @@ namespace Models
         public string Email { get; set; }
         public string MobileNumber { get; set; }
         public string Country { get; set; }
-
     }
 }

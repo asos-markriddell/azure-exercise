@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CustomerDataService.Data
+namespace Infrastructure.Data
 {
     public class DataContext : DbContext
     {

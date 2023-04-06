@@ -1,8 +1,10 @@
-using CustomerDataService.Data;
-using CustomerDataService.Repository;
+using Application.Contracts;
+using Application.Customers.Queries.GetCustomer;
+using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Asos.Sct.CustomerDataProcessing
+namespace CustomerDataService
 {
     public class Program
     {
@@ -23,6 +25,10 @@ namespace Asos.Sct.CustomerDataProcessing
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             
+            // Controllers
+            builder.Services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
+
+            // Repositories
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
             var app = builder.Build();

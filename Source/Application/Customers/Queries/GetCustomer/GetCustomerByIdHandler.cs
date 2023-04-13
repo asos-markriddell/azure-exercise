@@ -17,7 +17,7 @@ namespace Application.Customers.Queries.GetCustomer
         {
             CustomerDto customer =  _customerRepository.GetCustomerById(request.CustomerId);
 
-            GetCustomerByIdResponse response = new GetCustomerByIdResponse() { Customer = customer };
+            GetCustomerByIdResponse response = new GetCustomerByIdResponse(customer);
 
             return Task.FromResult(response);
         }

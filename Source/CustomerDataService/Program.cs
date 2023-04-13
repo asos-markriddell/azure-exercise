@@ -30,9 +30,6 @@ namespace CustomerDataService
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             
-            // Controllers
-          //  builder.Services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
-
             // Repositories
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 

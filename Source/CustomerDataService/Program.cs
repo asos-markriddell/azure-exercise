@@ -1,8 +1,13 @@
 using Application.Contracts;
 using Application.Customers.Queries.GetCustomer;
+using Application.Extensions;
+using AutoMapper;
+using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 namespace CustomerDataService
 {
@@ -26,10 +31,18 @@ namespace CustomerDataService
             builder.Services.AddSwaggerGen();
             
             // Controllers
-            builder.Services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
+          //  builder.Services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
 
             // Repositories
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            // Auto Mapper
+            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+            builder.Services.AddSingleton(mapper);
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // MediatR
+            builder.Services.AddApplication();
 
             var app = builder.Build();
 

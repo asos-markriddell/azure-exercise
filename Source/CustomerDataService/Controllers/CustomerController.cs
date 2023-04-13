@@ -1,5 +1,6 @@
 ﻿using Application.Customers.Queries.GetCustomer;
-using Domain.Models;
+using Domain.Models.Dto;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerDataService.Controllers
@@ -9,20 +10,22 @@ namespace CustomerDataService.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ILogger<CustomerController> _logger;
-        private readonly IGetCustomerQuery _customerQuery;
+        private readonly ISender _sender;
 
-        public CustomerController(ILogger<CustomerController> logger, IGetCustomerQuery customerQuery)
+        public CustomerController(ILogger<CustomerController> logger, ISender sender)
         {
             _logger = logger;
-            this._customerQuery = customerQuery;
+            this._sender = sender;
         }
 
         [HttpGet(Name = "GetCustomer")]
-        public async Task<Customer> Get(int customerId)
+        public async Task<ActionResult> GetCustomer(int customerId)
         {
             _logger.LogInformation("Customer Controller : Get By Id {0}", customerId);
 
-            return await _customerQuery.Execute(customerId);
+            var customer = await _sender.Send(new GetCustomerByIdRequest() { CustomerId = customerId});
+
+            return Ok(customer);
         }
     }
 }

@@ -10,5 +10,7 @@ namespace Domain.Models
         public string Surname { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Email { get; set; }
+        public IEnumerable<Address> Addresses { get; set; }
+        public IEnumerable<Contact> Contacts { get; set; }
     }
 }

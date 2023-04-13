@@ -1,7 +1,10 @@
-﻿namespace Domain.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Data.Models
 {
     public class CanonicalCustomer
     {
+        [Key]
         public int CanonicalCustomerId { get; set; }
         public int CustomerId { get; set; }
         public string FullName { get; set; }

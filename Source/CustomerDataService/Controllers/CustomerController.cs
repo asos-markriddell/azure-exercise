@@ -10,12 +10,12 @@ namespace CustomerDataService.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ILogger<CustomerController> _logger;
-        private readonly ISender _sender;
+        private readonly IMediator _mediator;
 
-        public CustomerController(ILogger<CustomerController> logger, ISender sender)
+        public CustomerController(ILogger<CustomerController> logger, IMediator mediator)
         {
             _logger = logger;
-            this._sender = sender;
+            this._mediator = mediator;
         }
 
         [HttpGet(Name = "GetCustomer")]
@@ -23,9 +23,11 @@ namespace CustomerDataService.Controllers
         {
             _logger.LogInformation("Customer Controller : Get By Id {0}", customerId);
 
-            var customer = await _sender.Send(new GetCustomerByIdRequest() { CustomerId = customerId});
+            GetCustomerByIdResponse response = await _mediator.Send(new GetCustomerByIdRequest() { CustomerId = customerId});
 
-            return Ok(customer);
+            if (response.Customer == null) return NotFound();
+
+            return Ok(response);
         }
     }
 }

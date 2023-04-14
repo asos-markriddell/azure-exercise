@@ -23,10 +23,9 @@ namespace Infrastructure.Repositories
 
         public CustomerDto GetCustomerById(int id)
         {
-            Customer customer = _dbContext.Customers.
-                Include(c => c.Addresses).
-                Include(c => c.Contacts).
-                Single(c => c.CustomerId == id);
+            Customer customer = _dbContext.Customers.Include(c => c.Addresses).Include(c => c.Contacts).Single(c => c.CustomerId == id);
+            
+            _logger.LogInformation($"Customer with id {id} {(customer == null ? "not found" : "returned")}");
 
             return _mapper.Map<CustomerDto>(customer);
         }

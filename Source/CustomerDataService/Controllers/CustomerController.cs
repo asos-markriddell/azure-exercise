@@ -1,5 +1,4 @@
 ﻿using Application.Customers.Queries.GetCustomer;
-using Domain.Models.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,15 +18,18 @@ namespace CustomerDataService.Controllers
         }
 
         [HttpGet(Name = "GetCustomer")]
+     //   [Route($"")] TODO: set Route Prefix
         public async Task<ActionResult> GetCustomer(int customerId)
         {
             _logger.LogInformation("Customer Controller : Get By Id {0}", customerId);
 
-            GetCustomerByIdResponse response = await _mediator.Send(new GetCustomerByIdRequest() { CustomerId = customerId});
+            var query = new GetCustomerByIdRequest(customerId);
+
+            GetCustomerByIdResponse response = await _mediator.Send(query);
 
             if (response.Customer == null) return NotFound();
 
-            return Ok(response);
+            return Ok(response.Customer);
         }
     }
 }

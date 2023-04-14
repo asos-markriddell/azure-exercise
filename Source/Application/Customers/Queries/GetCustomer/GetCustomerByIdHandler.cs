@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Application.Contracts;
+﻿using Application.Contracts;
 using Domain.Models.Dto;
 using MediatR;
 
@@ -16,7 +15,7 @@ namespace Application.Customers.Queries.GetCustomer
 
         public Task<GetCustomerByIdResponse> Handle(GetCustomerByIdRequest request, CancellationToken cancellationToken)
         {
-            CustomerDto customer =  _customerRepository.GetCustomerById(request.CustomerId);
+            CustomerDto customer = _customerRepository.GetCustomerById(request.CustomerId);
 
             GetCustomerByIdResponse response = new GetCustomerByIdResponse(customer);
 

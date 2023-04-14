@@ -31,7 +31,7 @@ namespace CustomerDataService
             builder.Services.AddSwaggerGen();
             
             // Repositories
-            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+            builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
             // Auto Mapper
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();

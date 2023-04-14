@@ -2,8 +2,13 @@
 
 namespace Application.Customers.Queries.GetCustomer
 {
-    public record GetCustomerByIdRequest : IRequest<GetCustomerByIdResponse>
+    public class GetCustomerByIdRequest : IRequest<GetCustomerByIdResponse>
     {
+        public GetCustomerByIdRequest(int customerId)
+        {
+            CustomerId = customerId;
+        }
+
         public int CustomerId { get; set; }
     }
 }

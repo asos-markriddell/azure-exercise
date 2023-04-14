@@ -1,10 +1,4 @@
-using Application.Contracts;
-using Application.Extensions;
-using AutoMapper;
-using Data;
-using Infrastructure;
-using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+using CanonicalCustomerApi.Extensions;
 
 namespace CanonicalCustomerApi
 {
@@ -18,22 +12,7 @@ namespace CanonicalCustomerApi
 
             builder.Services.AddControllers();
 
-            // Add Db Context
-            builder.Services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            // Repositories
-            builder.Services.AddTransient<ICanonicalCustomerRepository, CanonicalCustomerRepository>();
-
-            // Auto Mapper
-            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
-            builder.Services.AddSingleton(mapper);
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            // MediatR
-            builder.Services.AddApplication();
+            builder.Services.AddApplication().AddInfrastructure(new ConfigurationManager());
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

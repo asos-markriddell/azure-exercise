@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using Data;
+using Data.Models;
 using Domain.Models;
 
 namespace Infrastructure.Repositories
@@ -21,17 +22,51 @@ namespace Infrastructure.Repositories
 
         public CanonicalCustomerDto GetCanonicalCustomer(int id)
         {
-            throw new NotImplementedException();
+            var customer = _dbContext.CanonicalCustomer.Single(c => c.CanonicalCustomerId == id);
+
+            _logger.LogInformation($"Customer with id {id} {(customer == null ? "not found" : "returned")}");
+
+            return _mapper.Map<CanonicalCustomerDto>(customer);
         }
 
-        public void InsertCanonicalCustomer(CanonicalCustomerDto dto)
+        public CanonicalCustomerDto InsertCanonicalCustomer(CanonicalCustomerDto canonicalCustomerDto)
         {
-            throw new NotImplementedException();
+            var customer = _mapper.Map<CanonicalCustomer>(canonicalCustomerDto);
+
+            _dbContext.CanonicalCustomer.Add(customer);
+
+            if (_dbContext.SaveChanges() > 0) 
+                _logger.LogInformation($"Inserted Canonical Customer with Id {customer.CanonicalCustomerId} to database");
+
+            return _mapper.Map<CanonicalCustomerDto>(customer);
         }
 
-        public void UpdateCanonicalCustomer(CanonicalCustomerDto dto)
+        public CanonicalCustomerDto UpdateCanonicalCustomer(CanonicalCustomerDto canonicalCustomerDto)
         {
-            throw new NotImplementedException();
+            var customer = _dbContext.CanonicalCustomer.Single(c => c.CanonicalCustomerId == canonicalCustomerDto.CanonicalCustomerId);
+
+            _mapper.Map(canonicalCustomerDto, customer);
+
+            if (_dbContext.SaveChanges() > 0)
+                _logger.LogInformation($"Updated Canonical Customer with Id {customer.CanonicalCustomerId} in database");
+
+            return _mapper.Map<CanonicalCustomerDto>(customer);
+        }
+
+        public void DeleteCanonicalCustomer(int id)
+        {
+            var customer = _dbContext.CanonicalCustomer.Single(c => c.CanonicalCustomerId == id);
+
+            if (customer == null)
+            {
+                _logger.LogInformation($"Canonical Customer with Id {id} not found");
+                return;
+            }
+
+            _dbContext.CanonicalCustomer.Remove(customer);
+
+            if(_dbContext.SaveChanges() > 0)
+                _logger.LogInformation($"Deleted Canonical Customer with Id {id} in database");
         }
     }
 }

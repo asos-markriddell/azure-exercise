@@ -1,10 +1,11 @@
 ﻿using Application.Customers.Queries.GetCustomer;
+using CustomerDataService.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerDataService.Controllers
 {
-    [Route("api/[controller]")] // TODO: Set Route Prefix
+    [Route($"{Routes.RoutePrefix}[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -25,8 +26,10 @@ namespace CustomerDataService.Controllers
 
         #endregion
 
-        [HttpGet(Name = "GetCustomer")]
-        public async Task<ActionResult> GetCustomer(int customerId)
+        #region "Endpoints"
+
+        [HttpGet("{customerId}", Name = "GetCustomer")]
+        public async Task<ActionResult> GetCustomer([FromRoute] int customerId)
         {
             _logger.LogInformation("Customer Controller : Get By Id {0}", customerId);
 
@@ -38,5 +41,7 @@ namespace CustomerDataService.Controllers
 
             return Ok(response.Customer);
         }
+
+        #endregion
     }
 }

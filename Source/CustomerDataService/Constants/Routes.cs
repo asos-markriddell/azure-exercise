@@ -2,6 +2,6 @@
 {
     public static class Routes
     { 
-        public const string RoutePrefix = "/sct/sip/";
+        public const string RoutePrefix = "api/sct/v2/";
     }
 }

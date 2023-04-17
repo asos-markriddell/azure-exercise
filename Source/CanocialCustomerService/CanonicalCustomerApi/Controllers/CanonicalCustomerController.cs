@@ -45,7 +45,7 @@ namespace CanonicalCustomerApi.Controllers
         [HttpPost(Name = "InsertCanonicalCustomer")]
         public async Task<ActionResult> InsertCanonicalCustomer([FromBody] CanonicalCustomerModel customer)
         {
-            _logger.LogInformation("Canonical Customer Controller : Insert - Id : {0}", customer.CanonicalCustomerId);
+            _logger.LogInformation("Canonical Customer Controller : Insert - CustomerId {0}", customer.CustomerId);
 
             var request = new InsertCanonicalCustomerRequest(customer);
 
@@ -59,13 +59,25 @@ namespace CanonicalCustomerApi.Controllers
         [HttpPut(Name = "UpdateCanonicalCustomer")]
         public async Task<ActionResult> UpdateCanonicalCustomer([FromBody] CanonicalCustomerModel customer)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Canonical Customer Controller : Update - CanonicalCustomerId {0}", customer.CanonicalCustomerId);
+
+            var request = new UpdateCanonicalCustomerRequest(customer);
+
+            UpdateCanonicalCustomerResponse response = await _mediator.Send(request);
+
+            if (response.CanonicalCustomerId > 1) return Ok(response.CanonicalCustomerId); else return NotFound();
         }
         
         [HttpDelete(Name = "DeleteCanonicalCustomer")]
-        public async Task<ActionResult> DeleteCanonicalCustomer(int id)
+        public async Task<ActionResult> DeleteCanonicalCustomer(int canonicalCustomerId)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Canonical Customer Controller : Delete - CanonicalCustomerId {0}", canonicalCustomerId);
+
+            var request = new DeleteCanonicalCustomerRequest(canonicalCustomerId);
+
+            DeleteCanonicalCustomerResponse response = await _mediator.Send(request);
+
+            if (response.CanonicalCustomerId > 1) return Ok(response.CanonicalCustomerId); else return NotFound();
         }
         
     }

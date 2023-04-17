@@ -1,14 +1,11 @@
-﻿using Domain.Models;
+﻿using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data
+namespace Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-        }
-
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Address> Address { get; set; }
@@ -26,9 +23,9 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Address>().HasData(new Address
             {
                 AddressId = 1,
-                AddressLine1 = "Custom House",
-                AddressLine2 = "",
-                AddressLine3 = "",
+                AddressLine1 = "ASOS",
+                AddressLine2 = "Third Floor",
+                AddressLine3 = "Custom House",
                 City = "Belfast",
                 Country = "N. Ireland",
                 County = "Co. Antrim",

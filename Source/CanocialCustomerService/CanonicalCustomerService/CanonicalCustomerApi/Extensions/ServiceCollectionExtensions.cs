@@ -26,7 +26,7 @@ namespace CanonicalCustomerApi.Extensions
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
-
+            
             // Auto Mapper
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             services.AddSingleton(mapper);

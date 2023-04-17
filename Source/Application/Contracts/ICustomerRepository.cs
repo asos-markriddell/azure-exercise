@@ -1,9 +1,9 @@
-﻿using Domain.Models.Dto;
+﻿using Domain.Models;
 
 namespace Application.Contracts
 {
     public interface ICustomerRepository
     {
-        CustomerDto GetCustomerById(int id);
+        Task<CustomerModel> GetCustomerById(int id);
     }
 }

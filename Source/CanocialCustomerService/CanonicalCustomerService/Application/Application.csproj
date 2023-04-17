@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CanonicalCustomer\Commands\DeleteCanonicalCustomerHandler.cs" />
+    <Compile Remove="CanonicalCustomer\Commands\DeleteCanonicalCustomerRequest.cs" />
+    <Compile Remove="CanonicalCustomer\Commands\DeleteCanonicalCustomerResponse.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />

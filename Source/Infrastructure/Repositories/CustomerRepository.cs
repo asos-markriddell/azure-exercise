@@ -1,8 +1,8 @@
 ﻿using Application.Contracts;
 using AutoMapper;
 using Domain.Models;
-using Domain.Models.Dto;
-using Infrastructure.Data;
+using Data;
+using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -10,9 +10,15 @@ namespace Infrastructure.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
+        #region "Properties"
+
         private readonly DataContext _dbContext;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
+
+        #endregion
+
+        #region "Constructors"
 
         public CustomerRepository(DataContext dbContext, IMapper mapper, ILogger<CustomerRepository> logger)
         {
@@ -21,13 +27,21 @@ namespace Infrastructure.Repositories
             this._logger = logger;
         }
 
-        public CustomerDto GetCustomerById(int id)
+        #endregion
+
+        #region "Methods"
+
+        public async Task<CustomerModel> GetCustomerById(int id)
         {
-            Customer customer = _dbContext.Customers.Include(c => c.Addresses).Include(c => c.Contacts).Single(c => c.CustomerId == id);
-            
+            Customer customer = await _dbContext.Customers.Include(c => c.Addresses).
+                Include(c => c.Contacts).
+                SingleOrDefaultAsync(c => c.CustomerId == id);
+
             _logger.LogInformation($"Customer with id {id} {(customer == null ? "not found" : "returned")}");
 
-            return _mapper.Map<CustomerDto>(customer);
+            return _mapper.Map<CustomerModel>(customer);
         }
+
+        #endregion
     }
 }

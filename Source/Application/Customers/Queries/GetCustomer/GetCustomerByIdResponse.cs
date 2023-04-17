@@ -1,15 +1,14 @@
-﻿using Domain.Models.Dto;
-using MediatR;
+﻿using Domain.Models;
 
 namespace Application.Customers.Queries.GetCustomer
 {
     public class GetCustomerByIdResponse
     {
-        public GetCustomerByIdResponse(CustomerDto customer)
+        public GetCustomerByIdResponse(CustomerModel customer)
         {
             Customer = customer;
         }
 
-        public CustomerDto Customer { get; set; }
+        public CustomerModel Customer { get; set; }
     }
 }

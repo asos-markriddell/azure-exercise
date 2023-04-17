@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Data.Models;
 using Domain.Models;
-using Domain.Models.Dto;
 
 namespace Infrastructure
 {
@@ -10,8 +10,8 @@ namespace Infrastructure
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                config.CreateMap<Customer, CustomerDto>();
-                config.CreateMap<CustomerDto, Customer>();
+                config.CreateMap<Customer, CustomerModel>();
+                config.CreateMap<CustomerModel, Customer>();
             });
 
             return mappingConfig;

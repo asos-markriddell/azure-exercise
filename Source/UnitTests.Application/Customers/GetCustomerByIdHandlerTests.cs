@@ -1,7 +1,7 @@
 using Application.Contracts;
 using Application.Customers.Queries.GetCustomer;
+using Data.Models;
 using Domain.Models;
-using Domain.Models.Dto;
 using Moq;
 
 namespace UnitTests.Application.Customers
@@ -29,7 +29,7 @@ namespace UnitTests.Application.Customers
 
             var contact = new Contact() { ContactId = 1, CustomerId = customerId, HomeNumber = 0284697412, MobileNumber = 0772533698 };
 
-            CustomerDto expectedResult = new CustomerDto()
+            CustomerModel expectedResult = new CustomerModel()
             {
                 CustomerId = customerId,
                 Email = "john.smith@asos.com",
@@ -38,7 +38,7 @@ namespace UnitTests.Application.Customers
                 Contacts = new[] { contact }
             };
 
-            _stubCustomerRepository.Setup(x => x.GetCustomerById(customerId)).Returns(expectedResult);
+            _stubCustomerRepository.Setup(x => x.GetCustomerById(customerId)).Returns(Task.FromResult(expectedResult));
 
             var getCustomerByIdRequest = new GetCustomerByIdRequest(customerId);
 

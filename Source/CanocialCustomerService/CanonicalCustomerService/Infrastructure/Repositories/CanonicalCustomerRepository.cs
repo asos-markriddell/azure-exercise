@@ -4,6 +4,7 @@ using AutoMapper;
 using Data;
 using Data.Models;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -20,9 +21,9 @@ namespace Infrastructure.Repositories
             this._logger = logger;
         }
 
-        public CanonicalCustomerDto GetCanonicalCustomer(int id)
+        public async Task<CanonicalCustomerDto> GetCanonicalCustomer(int id)
         {
-            var customer = _dbContext.CanonicalCustomer.Single(c => c.CanonicalCustomerId == id);
+            var customer = _dbContext.CanonicalCustomer.SingleOrDefaultAsync(c => c.CanonicalCustomerId == id);
 
             _logger.LogInformation($"Customer with id {id} {(customer == null ? "not found" : "returned")}");
 

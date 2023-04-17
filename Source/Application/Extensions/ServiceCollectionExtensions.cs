@@ -9,8 +9,7 @@ namespace Application.Extensions
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddMediatR(c =>
-                c.RegisterServicesFromAssemblyContaining<
-                        Application.Customers.Queries.GetCustomer.GetCustomerByIdHandler>
+                c.RegisterServicesFromAssemblyContaining<GetCustomerByIdHandler>
                     ());
 
             return services;

@@ -1,5 +1,4 @@
 ﻿using Application.Contracts;
-using Domain.Models.Dto;
 using MediatR;
 
 namespace Application.Customers.Queries.GetCustomer
@@ -13,13 +12,13 @@ namespace Application.Customers.Queries.GetCustomer
             _customerRepository = customerRepository;
         }
 
-        public Task<GetCustomerByIdResponse> Handle(GetCustomerByIdRequest request, CancellationToken cancellationToken)
+        public async Task<GetCustomerByIdResponse> Handle(GetCustomerByIdRequest request, CancellationToken cancellationToken)
         {
-            CustomerDto customer = _customerRepository.GetCustomerById(request.CustomerId);
+            var customer = await _customerRepository.GetCustomerById(request.CustomerId);
 
             GetCustomerByIdResponse response = new GetCustomerByIdResponse(customer);
 
-            return Task.FromResult(response);
+            return await Task.FromResult(response);
         }
     }
 }

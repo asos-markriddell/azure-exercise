@@ -1,13 +1,10 @@
 using Application.Contracts;
-using Application.Customers.Queries.GetCustomer;
 using Application.Extensions;
 using AutoMapper;
+using Data;
 using Infrastructure;
-using Infrastructure.Data;
 using Infrastructure.Repositories;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using MediatR;
 
 namespace CustomerDataService
 {

@@ -4,12 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerDataService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] // TODO: Set Route Prefix
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        #region "Properties"
+
         private readonly ILogger<CustomerController> _logger;
         private readonly IMediator _mediator;
+
+        #endregion
+
+        #region "Constructors"
 
         public CustomerController(ILogger<CustomerController> logger, IMediator mediator)
         {
@@ -17,8 +23,9 @@ namespace CustomerDataService.Controllers
             this._mediator = mediator;
         }
 
+        #endregion
+
         [HttpGet(Name = "GetCustomer")]
-     //   [Route($"")] TODO: set Route Prefix
         public async Task<ActionResult> GetCustomer(int customerId)
         {
             _logger.LogInformation("Customer Controller : Get By Id {0}", customerId);
@@ -27,7 +34,7 @@ namespace CustomerDataService.Controllers
 
             GetCustomerByIdResponse response = await _mediator.Send(query);
 
-            if (response.Customer == null) return NotFound();
+            if (response.Customer is null) return NotFound();
 
             return Ok(response.Customer);
         }

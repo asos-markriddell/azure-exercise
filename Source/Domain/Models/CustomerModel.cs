@@ -1,8 +1,10 @@
-﻿namespace Domain.Models.Dto
+﻿using Data.Models;
+
+namespace Domain.Models
 {
-    public class CustomerDto
+    public class CustomerModel
     {
-        public int CustomerId { get; set; } 
+        public int CustomerId { get; set; }
         public string Fullname { get; set; }
         public string Email { get; set; }
         public IEnumerable<Address> Addresses { get; set; }

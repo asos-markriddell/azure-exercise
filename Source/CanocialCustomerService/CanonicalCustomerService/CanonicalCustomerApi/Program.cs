@@ -12,7 +12,7 @@ namespace CanonicalCustomerApi
 
             builder.Services.AddControllers();
 
-            builder.Services.AddApplication().AddInfrastructure(new ConfigurationManager());
+            builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

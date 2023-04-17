@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.Models;
+using Data.Entities;
 using Domain.Models;
 
 namespace Infrastructure

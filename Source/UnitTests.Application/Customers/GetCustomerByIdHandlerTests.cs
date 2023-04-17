@@ -1,6 +1,6 @@
 using Application.Contracts;
 using Application.Customers.Queries.GetCustomer;
-using Data.Models;
+using Data.Entities;
 using Domain.Models;
 using Moq;
 
@@ -27,13 +27,14 @@ namespace UnitTests.Application.Customers
 
             var address = new Address() { AddressId = 1, AddressLine1 = "ASOS", AddressLine2 = "Third Floor", AddressLine3 = "Custom House", City = "Belfast", County = "Co. Antrim", Country = "N. Ireland", CustomerId = customerId, PostalCode = "BT35 873" };
 
-            var contact = new Contact() { ContactId = 1, CustomerId = customerId, HomeNumber = 0284697412, MobileNumber = 0772533698 };
+            var contact = new Contact() { ContactId = 1, CustomerId = customerId, HomeNumber = "02846 974123", MobileNumber = "07725 33698" };
 
             CustomerModel expectedResult = new CustomerModel()
             {
                 CustomerId = customerId,
                 Email = "john.smith@asos.com",
-                Fullname = "John Smith",
+                Forename = "John",
+                Surname = "Smith",
                 Addresses = new[] { address },
                 Contacts = new[] { contact }
             };

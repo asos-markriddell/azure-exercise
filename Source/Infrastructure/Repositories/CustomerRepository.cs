@@ -2,7 +2,7 @@
 using AutoMapper;
 using Domain.Models;
 using Data;
-using Data.Models;
+using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 

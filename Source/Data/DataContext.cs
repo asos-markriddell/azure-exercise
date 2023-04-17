@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data
@@ -37,8 +37,8 @@ namespace Data
             {
                 CustomerId = 1,
                 ContactId = 1,
-                HomeNumber = 03998383,
-                MobileNumber = 0129292
+                HomeNumber = "02879 635241",
+                MobileNumber = "07725 339698"
             });
         }
     }

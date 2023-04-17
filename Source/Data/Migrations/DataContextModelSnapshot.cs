@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Asos.Sct.CustomerDataService.Migrations
+namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -17,12 +17,12 @@ namespace Asos.Sct.CustomerDataService.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Models.Address", b =>
+            modelBuilder.Entity("Data.Entities.Address", b =>
                 {
                     b.Property<int>("AddressId")
                         .ValueGeneratedOnAdd()
@@ -63,15 +63,17 @@ namespace Asos.Sct.CustomerDataService.Migrations
 
                     b.HasKey("AddressId");
 
+                    b.HasIndex("CustomerId");
+
                     b.ToTable("Address");
 
                     b.HasData(
                         new
                         {
                             AddressId = 1,
-                            AddressLine1 = "Custom House",
-                            AddressLine2 = "",
-                            AddressLine3 = "",
+                            AddressLine1 = "ASOS",
+                            AddressLine2 = "Third Floor",
+                            AddressLine3 = "Custom House",
                             City = "Belfast",
                             Country = "N. Ireland",
                             County = "Co. Antrim",
@@ -80,7 +82,7 @@ namespace Asos.Sct.CustomerDataService.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Models.Contact", b =>
+            modelBuilder.Entity("Data.Entities.Contact", b =>
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
@@ -91,13 +93,17 @@ namespace Asos.Sct.CustomerDataService.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("HomeNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MobileNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactId");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Contacts");
 
@@ -106,12 +112,12 @@ namespace Asos.Sct.CustomerDataService.Migrations
                         {
                             ContactId = 1,
                             CustomerId = 1,
-                            HomeNumber = 3998383,
-                            MobileNumber = 129292
+                            HomeNumber = "02879 635241",
+                            MobileNumber = "07725 339698"
                         });
                 });
 
-            modelBuilder.Entity("Domain.Models.Customer", b =>
+            modelBuilder.Entity("Data.Entities.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
@@ -147,6 +153,31 @@ namespace Asos.Sct.CustomerDataService.Migrations
                             Forename = "John",
                             Surname = "Smith"
                         });
+                });
+
+            modelBuilder.Entity("Data.Entities.Address", b =>
+                {
+                    b.HasOne("Data.Entities.Customer", null)
+                        .WithMany("Addresses")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.Contact", b =>
+                {
+                    b.HasOne("Data.Entities.Customer", null)
+                        .WithMany("Contacts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.Customer", b =>
+                {
+                    b.Navigation("Addresses");
+
+                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

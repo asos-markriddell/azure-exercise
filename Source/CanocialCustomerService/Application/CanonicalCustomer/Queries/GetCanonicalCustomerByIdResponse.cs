@@ -4,9 +4,9 @@ namespace Application.CanonicalCustomer.Queries
 {
     public class GetCanonicalCustomerByIdResponse
     {
-        public CanonicalCustomerDto CanonicalCustomer { get; set; }
+        public CanonicalCustomerModel CanonicalCustomer { get; set; }
 
-        public GetCanonicalCustomerByIdResponse(CanonicalCustomerDto canonicalCustomer)
+        public GetCanonicalCustomerByIdResponse(CanonicalCustomerModel canonicalCustomer)
         {
             CanonicalCustomer = canonicalCustomer;
         } 

@@ -5,9 +5,9 @@ namespace Application.CanonicalCustomer.Commands
 {
     public class UpdateCanonicalCustomerRequest : IRequest<UpdateCanonicalCustomerResponse>
     {
-        public CanonicalCustomerDto CanonicalCustomer { get; set; }
+        public CanonicalCustomerModel CanonicalCustomer { get; set; }
 
-        public UpdateCanonicalCustomerRequest(CanonicalCustomerDto canonicalCustomer)
+        public UpdateCanonicalCustomerRequest(CanonicalCustomerModel canonicalCustomer)
         {
             CanonicalCustomer = canonicalCustomer;
         }

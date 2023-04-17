@@ -1,10 +1,14 @@
-﻿using Application.CanonicalCustomer.Queries;
+﻿using Application.CanonicalCustomer.Commands;
+using Application.CanonicalCustomer.Queries;
+using CanonicalCustomerApi.Constants;
 using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CanonicalCustomerApi.Controllers
 {
+    [Route($"{Routes.RoutePrefix}[controller]")]
+    [ApiController]
     public class CanonicalCustomerController : Controller
     {
         #region "Properties"
@@ -24,12 +28,12 @@ namespace CanonicalCustomerApi.Controllers
 
         #endregion
 
-        [HttpGet(Name="GetCanonicalCustomer")]
-        public async Task<ActionResult> GetCanonicalCustomer(int id)
+        [HttpGet(Name ="GetCanonicalCustomer")]
+        public async Task<ActionResult> GetCanonicalCustomer(int customerId)
         {
-            _logger.LogInformation("Customer Controller : Get By Id {0}", id);
+            _logger.LogInformation("Canonical Customer Controller : GetById {0}", customerId);
 
-            var query = new GetCanonicalCustomerByIdRequest(id);
+            var query = new GetCanonicalCustomerByIdRequest(customerId);
 
             GetCanonicalCustomerByIdResponse response = await _mediator.Send(query);
 
@@ -38,19 +42,27 @@ namespace CanonicalCustomerApi.Controllers
             return Ok(response.CanonicalCustomer);
         }
 
-        [HttpGet(Name = "InsertCanonicalCustomer")]
-        public async Task<ActionResult> InsertCanonicalCustomer(CanonicalCustomerDto customer)
+        [HttpPost(Name = "InsertCanonicalCustomer")]
+        public async Task<ActionResult> InsertCanonicalCustomer([FromBody] CanonicalCustomerModel customer)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Canonical Customer Controller : Insert - Id : {0}", customer.CanonicalCustomerId);
+
+            var request = new InsertCanonicalCustomerRequest(customer);
+
+            InsertCanonicalCustomerResponse response = await _mediator.Send(request);
+
+            if (response.CanonicalCustomer is null) return NotFound();
+
+            return Ok(response.CanonicalCustomer);
         }
 
-        [HttpGet(Name = "UpdateCanonicalCustomer")]
-        public async Task<ActionResult> UpdateCanonicalCustomer(CanonicalCustomerDto customer)
+        [HttpPut(Name = "UpdateCanonicalCustomer")]
+        public async Task<ActionResult> UpdateCanonicalCustomer([FromBody] CanonicalCustomerModel customer)
         {
             throw new NotImplementedException();
         }
         
-        [HttpGet(Name = "DeleteCanonicalCustomer")]
+        [HttpDelete(Name = "DeleteCanonicalCustomer")]
         public async Task<ActionResult> DeleteCanonicalCustomer(int id)
         {
             throw new NotImplementedException();

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using Data;
-using Data.Models;
+using Data.Entities;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,16 +21,16 @@ namespace Infrastructure.Repositories
             this._logger = logger;
         }
 
-        public async Task<CanonicalCustomerDto> GetCanonicalCustomer(int id)
+        public async Task<CanonicalCustomerModel> GetCanonicalCustomer(int id)
         {
-            var customer = _dbContext.CanonicalCustomer.SingleOrDefaultAsync(c => c.CanonicalCustomerId == id);
+            var customer = await _dbContext.CanonicalCustomer.SingleOrDefaultAsync(c => c.CanonicalCustomerId == id);
 
             _logger.LogInformation($"Customer with id {id} {(customer == null ? "not found" : "returned")}");
 
-            return _mapper.Map<CanonicalCustomerDto>(customer);
+            return _mapper.Map<CanonicalCustomerModel>(customer);
         }
 
-        public CanonicalCustomerDto InsertCanonicalCustomer(CanonicalCustomerDto canonicalCustomerDto)
+        public CanonicalCustomerModel InsertCanonicalCustomer(CanonicalCustomerModel canonicalCustomerDto)
         {
             var customer = _mapper.Map<CanonicalCustomer>(canonicalCustomerDto);
 
@@ -39,10 +39,10 @@ namespace Infrastructure.Repositories
             if (_dbContext.SaveChanges() > 0) 
                 _logger.LogInformation($"Inserted Canonical Customer with Id {customer.CanonicalCustomerId} to database");
 
-            return _mapper.Map<CanonicalCustomerDto>(customer);
+            return _mapper.Map<CanonicalCustomerModel>(customer);
         }
 
-        public CanonicalCustomerDto UpdateCanonicalCustomer(CanonicalCustomerDto canonicalCustomerDto)
+        public CanonicalCustomerModel UpdateCanonicalCustomer(CanonicalCustomerModel canonicalCustomerDto)
         {
             var customer = _dbContext.CanonicalCustomer.Single(c => c.CanonicalCustomerId == canonicalCustomerDto.CanonicalCustomerId);
 
@@ -51,7 +51,7 @@ namespace Infrastructure.Repositories
             if (_dbContext.SaveChanges() > 0)
                 _logger.LogInformation($"Updated Canonical Customer with Id {customer.CanonicalCustomerId} in database");
 
-            return _mapper.Map<CanonicalCustomerDto>(customer);
+            return _mapper.Map<CanonicalCustomerModel>(customer);
         }
 
         public void DeleteCanonicalCustomer(int id)

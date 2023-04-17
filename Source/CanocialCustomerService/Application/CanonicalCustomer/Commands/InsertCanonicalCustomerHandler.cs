@@ -14,9 +14,9 @@ namespace Application.CanonicalCustomer.Commands
 
         public Task<InsertCanonicalCustomerResponse> Handle(InsertCanonicalCustomerRequest request, CancellationToken cancellationToken)
         {
-            _repository.InsertCanonicalCustomer(request.CanonicalCustomer);
+            var customer = _repository.InsertCanonicalCustomer(request.CanonicalCustomer);
 
-            var response = new InsertCanonicalCustomerResponse(request.CanonicalCustomer.CanonicalCustomerId);
+            var response = new InsertCanonicalCustomerResponse(customer);
 
             return Task.FromResult(response);
         }

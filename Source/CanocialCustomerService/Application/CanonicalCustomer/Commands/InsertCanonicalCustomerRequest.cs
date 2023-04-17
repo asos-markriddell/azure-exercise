@@ -5,9 +5,9 @@ namespace Application.CanonicalCustomer.Commands
 {
     public class InsertCanonicalCustomerRequest : IRequest<InsertCanonicalCustomerResponse>
     {
-        public CanonicalCustomerDto CanonicalCustomer { get; set; }
+        public CanonicalCustomerModel CanonicalCustomer { get; set; }
 
-        public InsertCanonicalCustomerRequest(CanonicalCustomerDto canonicalCustomer)
+        public InsertCanonicalCustomerRequest(CanonicalCustomerModel canonicalCustomer)
         {
             CanonicalCustomer = canonicalCustomer;
         }

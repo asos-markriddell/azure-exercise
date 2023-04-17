@@ -1,6 +1,6 @@
-﻿using Data.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Net;
+using Data.Entities;
 
 namespace Data
 {

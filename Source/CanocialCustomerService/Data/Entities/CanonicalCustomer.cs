@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Models
+namespace Data.Entities
 {
-    public class CanonicalCustomerDto
+    public class CanonicalCustomer
     {
         [Key]
         public int CanonicalCustomerId { get; set; }

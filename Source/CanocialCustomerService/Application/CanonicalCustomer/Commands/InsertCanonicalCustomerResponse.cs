@@ -2,11 +2,11 @@
 {
     public class InsertCanonicalCustomerResponse
     {
-        public int CanonicalCustomerId { get; set; }
-
-        public InsertCanonicalCustomerResponse(int canonicalCustomerId)
+        public Domain.Models.CanonicalCustomerModel CanonicalCustomer;
+        
+        public InsertCanonicalCustomerResponse(Domain.Models.CanonicalCustomerModel canonicalCustomer)
         {
-            CanonicalCustomerId = canonicalCustomerId;
+            CanonicalCustomer = canonicalCustomer;
         }
     }
 }

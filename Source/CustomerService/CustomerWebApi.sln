@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerDataService", "CustomerDataService.csproj", "{B56B7D94-2B06-4264-A604-3143C7A32165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerDataService", "CustomerApi\CustomerDataService.csproj", "{B56B7D94-2B06-4264-A604-3143C7A32165}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\Domain\Domain.csproj", "{4244BBF3-8132-4D56-A427-C3254D37A868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4244BBF3-8132-4D56-A427-C3254D37A868}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "..\Application\Application.csproj", "{98DBC60E-4BC3-4391-B794-0AA8DF96AF1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{98DBC60E-4BC3-4391-B794-0AA8DF96AF1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{AD15FD7F-B8D8-41E1-A77D-8F78413FEC48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{AD15FD7F-B8D8-41E1-A77D-8F78413FEC48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.Application", "..\UnitTests.Application\UnitTests.Application.csproj", "{AC08F423-1426-4A00-AA63-3DA439E76E96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.Application", "UnitTests.Application\UnitTests.Application.csproj", "{AC08F423-1426-4A00-AA63-3DA439E76E96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.Infrastructure", "..\UnitTests.Infrastructure\UnitTests.Infrastructure.csproj", "{8DF07DA0-B07A-43C4-B824-5F6F7556BA1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.Infrastructure", "UnitTests.Infrastructure\UnitTests.Infrastructure.csproj", "{8DF07DA0-B07A-43C4-B824-5F6F7556BA1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{3C679A9E-48B1-4F85-8B1E-33EC5CF699D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{3C679A9E-48B1-4F85-8B1E-33EC5CF699D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

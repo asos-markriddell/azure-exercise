@@ -15,14 +15,14 @@ pool:
     vmImage: ubuntu-latest
 
 variables:
-  slnPath: $(Build.SourcesDirectory)/CustomerService/CustomerWebApi.sln
+  slnPath: $(Build.SourcesDirectory)/Source/CustomerService/CustomerWebApi.sln
 
 steps: 
 - task: DotNetCoreCLI@2
   displayName: 'Restore Nuget Packages'
   inputs:
     command: 'restore'
-    projects: '$(slnPath)'
+    projects: '**/*.csproj'
     feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2

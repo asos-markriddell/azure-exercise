@@ -15,7 +15,7 @@ pool:
     vmImage: ubuntu-latest
 
 variables:
-  slnPath: $(Build.SourcesDirectory)/Source/CanonicalCustomerService/CanonicalCustomerWebApi.sln
+  slnPath: $(Build.SourcesDirectory)/Source/CanonicalCustomerService/CanonicalCustomerService.sln
 
 steps: 
 - task: DotNetCoreCLI@2

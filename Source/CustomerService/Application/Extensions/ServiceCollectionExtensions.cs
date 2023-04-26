@@ -1,6 +1,5 @@
 ﻿using Application.Customers.Queries.GetCustomer;
 using Microsoft.Extensions.DependencyInjection;
-using MediatR;
 
 namespace Application.Extensions
 {

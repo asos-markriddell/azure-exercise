@@ -17,7 +17,7 @@ namespace Data
                 new Customer
                 {
                     CustomerId = 1, Forename = "John", Surname = "Smith", Email = "john.smith@asos.com",
-                    DateOfBirth = DateTime.Parse("16/02/2008 12:15:12")
+                    DateOfBirth = DateTime.Parse("01/01/2008 12:15:12")
                 });
 
             modelBuilder.Entity<Address>().HasData(new Address

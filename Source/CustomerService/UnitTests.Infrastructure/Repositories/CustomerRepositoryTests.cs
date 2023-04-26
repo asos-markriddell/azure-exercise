@@ -27,11 +27,9 @@ namespace UnitTests.Infrastructure.Repositories
         public CustomerRepositoryTests()
         {
             var _contextOptions = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase("BloggingControllerTest")
-                .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+                .UseInMemoryDatabase("CustomerControllerTest").ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            //using var context =
             _context = new DataContext(_contextOptions);
 
             _context.Database.EnsureDeleted();

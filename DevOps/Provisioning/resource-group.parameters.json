@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceGroupName": {
+      "value": "asos-sct-dev-eun-mriddell-onboarding-rg"
+    },
+    "location": {
+      "value": "northeurope"
+    },
+    "tags": {
+      "value": {
+        "platform": "SCT Integration",
+        "stage": "dev",
+        "data-classification": "asos-internal",
+        "business-criticality": "business-supporting",
+        "team": "Samson"
+      }
+    }
+  }
+}
